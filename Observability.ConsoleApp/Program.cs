@@ -1,5 +1,4 @@
-﻿
-using Observability.ConsoleApp;
+﻿using Observability.ConsoleApp;
 using OpenTelemetry;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
@@ -7,6 +6,7 @@ using OpenTelemetry.Trace;
 Console.WriteLine("Hello, World!");
 
 var traceProvider = Sdk.CreateTracerProviderBuilder()
+    .AddSource(OpenTelemetryConstants.ActivitySourceName)
     .ConfigureResource(configure =>
     {
         configure.AddService(OpenTelemetryConstants.ServiceName, OpenTelemetryConstants.ServiceVersion)
