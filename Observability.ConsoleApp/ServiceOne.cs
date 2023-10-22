@@ -21,10 +21,14 @@ namespace Observability.ConsoleApp
 
 
                     activity?.AddEvent(new("google'a şstek başladı", tags: eventTags));
+                    activity?.AddTag("request.schema", "https");
+                    activity?.AddTag("request.method", "get");
 
                     var result = await httpClient.GetAsync("http://www.goggle.com");
 
                     var responseContent = await result.Content.ReadAsStringAsync();
+
+                    activity.AddTag("response.lenght", responseContent.Length);
 
                     eventTags.Add("google body length", responseContent.Length);
                     activity?.AddEvent(new("google'a istek tamamlandı", tags: eventTags));
