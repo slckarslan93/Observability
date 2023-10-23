@@ -32,6 +32,11 @@ namespace Observability.ConsoleApp
 
                     eventTags.Add("google body length", responseContent.Length);
                     activity?.AddEvent(new("google'a istek tamamlandı", tags: eventTags));
+
+                    var serviceTwo = new ServiceTwo();
+
+                    var fileLenght = serviceTwo.WriteToFile("Merhaba Dünya");
+
                     return responseContent.Length;
                 }
                 catch (Exception ex)
